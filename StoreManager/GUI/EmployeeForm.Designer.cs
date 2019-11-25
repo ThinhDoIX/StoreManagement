@@ -47,9 +47,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.txt_search = new System.Windows.Forms.TextBox();
             this.lbl_typechoice = new System.Windows.Forms.Label();
-            this.btn_search = new System.Windows.Forms.Button();
             this.cb_typesearch = new System.Windows.Forms.ComboBox();
             this.dgvEmployee = new System.Windows.Forms.DataGridView();
             this.cltenNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -233,9 +233,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txt_search);
             this.groupBox1.Controls.Add(this.lbl_typechoice);
-            this.groupBox1.Controls.Add(this.btn_search);
             this.groupBox1.Controls.Add(this.cb_typesearch);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
@@ -243,6 +243,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tìm kiếm nhân viên";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(16, 90);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(73, 18);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Tìm kiếm:";
             // 
             // txt_search
             // 
@@ -258,21 +268,12 @@
             // lbl_typechoice
             // 
             this.lbl_typechoice.AutoSize = true;
-            this.lbl_typechoice.Location = new System.Drawing.Point(24, 44);
+            this.lbl_typechoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_typechoice.Location = new System.Drawing.Point(16, 42);
             this.lbl_typechoice.Name = "lbl_typechoice";
-            this.lbl_typechoice.Size = new System.Drawing.Size(100, 17);
+            this.lbl_typechoice.Size = new System.Drawing.Size(106, 18);
             this.lbl_typechoice.TabIndex = 2;
             this.lbl_typechoice.Text = "Tìm kiếm theo:";
-            // 
-            // btn_search
-            // 
-            this.btn_search.Location = new System.Drawing.Point(6, 71);
-            this.btn_search.Name = "btn_search";
-            this.btn_search.Size = new System.Drawing.Size(118, 48);
-            this.btn_search.TabIndex = 1;
-            this.btn_search.Text = "Tìm kiếm";
-            this.btn_search.UseVisualStyleBackColor = true;
-            this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
             // 
             // cb_typesearch
             // 
@@ -396,7 +397,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btn_search;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dgvEmployee;
         private System.Windows.Forms.Label label1;
@@ -426,5 +426,6 @@
         private System.Windows.Forms.TextBox txt_sodienthoai;
         private System.Windows.Forms.Label lbl_sodiennthoai;
         private System.Windows.Forms.DateTimePicker dtp_ngaysinh;
+        private System.Windows.Forms.Label label6;
     }
 }
