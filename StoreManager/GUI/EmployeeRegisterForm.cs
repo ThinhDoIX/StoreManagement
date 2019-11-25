@@ -17,6 +17,7 @@ namespace StoreManager.GUI
         public EmployeeRegisterForm()
         {
             InitializeComponent();
+            this.Text = "Thêm nhân viên mới";
             //txt_reg_fullname.Focus();
         }
 
