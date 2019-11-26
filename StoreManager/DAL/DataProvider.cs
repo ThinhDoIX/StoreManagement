@@ -20,13 +20,45 @@ namespace StoreManager.DAL
             this.conn = (new ConnectionString()).getConnection();
         }
 
-        public int Update_NhanVien(string hoten, string gioitinh, string ngaysinh, string email, string username, string password)
+        public int Update_NhanVien(string hoten, string gioitinh, DateTime ngaysinh, string email, string diachi, string manv)
         {
 
-            query = "UPDATE NhanVien SET tenNV = @Hoten, gioitinh = @Gioitinh, email = @Email, username = @Username, userpassword = @Password where maNV = @MaNV";
+            query = "UPDATE NhanVien " +
+                        "SET tenNV = @Hoten, " +
+                            "gioitinh = @Gioitinh, " +
+                            "ngaysinh = @Ngaysinh, " +
+                            "email = @Email, " +
+                            "diachi = @Diachi " +
+                                "where maNV = @MaNV";
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@Hoten", SqlDbType.NVarChar).Value = hoten;
+                    cmd.Parameters.Add("@Gioitinh", SqlDbType.NVarChar).Value = gioitinh;
+                    cmd.Parameters.Add("@Ngaysinh", SqlDbType.Date).Value = ngaysinh.Date;
+                    cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = email;
+                    cmd.Parameters.Add("@Diachi", SqlDbType.NVarChar).Value = diachi;
+                    cmd.Parameters.Add("@MaNV", SqlDbType.VarChar).Value = manv;
+                    return cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
+        public int Delete_NhanVien(string manv)
+        {
+            query = "Update NhanVien SET hidden = 0 where maNV = @MaNV";
 
-            return 0;
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@MaNV", SqlDbType.VarChar).Value = manv;
+                    return cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public void Insert_NhanVien(NhanVien nhanvien)
@@ -70,9 +102,10 @@ namespace StoreManager.DAL
 
         public DataTable selectAllNhanVien()
         {
-            String query = "Select tenNV, sodienthoai, gioitinh, ngaysinh, email, diachi, tenloaiNV, username, userpassword " +
+            String query = "Select maNV, tenNV, sodienthoai, gioitinh, ngaysinh, email, diachi, tenloaiNV, username, userpassword " +
                                 "from NhanVien, LoaiNhanVien " +
-                                    "where NhanVien.maloaiNV = LoaiNhanVien.maloaiNV";
+                                    "where NhanVien.maloaiNV = LoaiNhanVien.maloaiNV " +
+                                        "and hidden = 1";
             DataTable dataEmployees = new DataTable();
             using (conn)
             {
@@ -148,7 +181,8 @@ namespace StoreManager.DAL
             String query = "Select tenNV, sodienthoai, gioitinh, ngaysinh, email, diachi, tenloaiNV, username, userpassword " +
                                 "from NhanVien, LoaiNhanVien " +
                                     "where NhanVien.maloaiNV = LoaiNhanVien.maloaiNV " +
-                                        "and NhanVien.tenNV like @TenNV";
+                                        "and NhanVien.tenNV like @TenNV " +
+                                            "and hidden = 1";
             DataTable dt = new DataTable();
             using (conn)
             {
@@ -170,7 +204,8 @@ namespace StoreManager.DAL
             String query = "Select tenNV, sodienthoai, gioitinh, ngaysinh, email, diachi, tenloaiNV, username, userpassword " +
                                 "from NhanVien, LoaiNhanVien " +
                                     "where NhanVien.maloaiNV = LoaiNhanVien.maloaiNV " +
-                                        "and LoaiNhanVien.tenloaiNV like @Chucvu";
+                                        "and LoaiNhanVien.tenloaiNV like @Chucvu" +
+                                            "and hidden = 1";
             DataTable dt = new DataTable();
             using (conn)
             {
@@ -179,6 +214,26 @@ namespace StoreManager.DAL
                 {
                     cmd.Parameters.Add("@Chucvu", SqlDbType.NVarChar).Value = "%" + role.Trim().ToLower() + "%";
 
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    sda.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public DataTable SelectAllHangHoa()
+        {
+            string query = "SELECT maHH, tenHH, soluong, dongia, donvitinh, tenloaiHH, chatlieu " +
+                            "FROM HangHoa, LoaiHangHoa, DonViTinh " +
+                             "WHERE HangHoa.maloaiHH = LoaiHangHoa.maloaiHH " +
+                                "and HangHoa.donvitinh = DonViTinh.tenDV " + 
+                                    "and hidden = 1";
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    DataTable dt = new DataTable();
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     sda.Fill(dt);
                     return dt;
