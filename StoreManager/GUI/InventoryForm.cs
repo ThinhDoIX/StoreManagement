@@ -36,11 +36,6 @@ namespace StoreManager
 
         }
 
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void dgvHangHoa_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             currentRowIndex = e.RowIndex;
@@ -74,11 +69,58 @@ namespace StoreManager
 
         private void InventoryForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'storeDBDataSet2.LoaiHangHoa' table. You can move, or remove it, as needed.
+            this.loaiHangHoaTableAdapter1.Fill(this.storeDBDataSet2.LoaiHangHoa);
             // TODO: This line of code loads data into the 'storeDBDataSet1.HangHoa' table. You can move, or remove it, as needed.
             this.hangHoaTableAdapter.Fill(this.storeDBDataSet1.HangHoa);
             // TODO: This line of code loads data into the 'storeDBDataSet.LoaiHangHoa' table. You can move, or remove it, as needed.
             this.loaiHangHoaTableAdapter.Fill(this.storeDBDataSet.LoaiHangHoa);
 
+        }
+
+        private void btn_xoa_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = new DataGridViewRow();
+            row = dgvHangHoa.Rows[currentRowIndex];
+
+            DataProvider provider = new DataProvider();
+            int result = provider.Delete_HangHoa(row.Cells[0].Value.ToString());
+            if (result > 0)
+            {
+                MessageBox.Show("Đã xóa hàng hóa mã số: " + row.Cells[0].Value.ToString(), "Thông báo");
+                showHangHoa();
+            }
+            else
+            {
+                MessageBox.Show("Xóa thất bại", "Thông báo");
+            }
+        }
+
+        private void btn_capnhat_Click(object sender, EventArgs e)
+        {
+            DataProvider provider = new DataProvider();
+            int result = provider.Update_HangHoa(txt_tenHH.Text, txt_dongia.Text, txt_maHH.Text);
+            if(result > 0)
+            {
+                MessageBox.Show("Đã cập nhật hàng hóa", "Thông báo");
+                showHangHoa();
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật thất bại", "Thông báo");
+            }
+        }
+
+        private void btn_timkiem_Click(object sender, EventArgs e)
+        {
+            DataProvider provider = new DataProvider();
+            dgvHangHoa.DataSource = provider.selectHangHoa_ByCondition(cb_tenloaiHH.Text, cb_tinhtrang.Text.Trim().ToLower());
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            showHangHoa();
+            cb_tenloaiHH.SelectedIndex = -1;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using StoreManager.DTO;
+using StoreManager.GUI;
 using System;
 using System.Windows.Forms;
 
@@ -87,6 +88,12 @@ namespace StoreManager
             employee_form.Left = 5;
             employee_form.Size = this.ClientRectangle.Size;
             employee_form.Show();
+        }
+
+        private void lậpPhiếuNhậpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GoodsReceiptForm goodsReceiptForm = new GoodsReceiptForm();
+            goodsReceiptForm.ShowDialog();
         }
     }
 }

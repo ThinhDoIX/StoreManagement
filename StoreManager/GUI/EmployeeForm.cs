@@ -29,15 +29,15 @@ namespace StoreManager
             connection = new ConnectionString();
         }
 
-        private void showDetailEmployees()
+        private void ShowDetailEmployees()
         {
             // TODO: Show detail left panel
         }
 
-        private void showEmployees()
+        private void ShowEmployees()
         {
             DataProvider provider = new DataProvider();
-            dgvEmployee.DataSource = provider.selectAllNhanVien();
+            dgvEmployee.DataSource = provider.SelectAllNhanVien();
             dgvEmployee.Columns["username"].Visible = false;
             dgvEmployee.Columns["userpassword"].Visible = false;
             dgvEmployee.Columns["diachi"].Visible = false;
@@ -46,8 +46,8 @@ namespace StoreManager
 
         private void EmployeeForm_Load(object sender, EventArgs e)
         {
-            showEmployees();
-            showDetailEmployees();
+            ShowEmployees();
+            ShowDetailEmployees();
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -90,7 +90,7 @@ namespace StoreManager
 
             if (text == "")
             {
-                showEmployees();
+                ShowEmployees();
             }
         }
 
@@ -131,7 +131,7 @@ namespace StoreManager
             if(result > 0)
             {
                 MessageBox.Show("Đã cập nhật thông tin nhân viên.", "Thông báo");
-                showEmployees();
+                ShowEmployees();
             } 
             else
             {
@@ -155,7 +155,7 @@ namespace StoreManager
             if(result > 0)
             {
                 MessageBox.Show("Đã xóa nhân viên mã số: " + row.Cells[0].Value.ToString(), "Thông báo");
-                showEmployees();
+                ShowEmployees();
             }
             else
             {
