@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="StoreDBDataSet3" targetNamespace="http://tempuri.org/StoreDBDataSet3.xsd" xmlns:mstns="http://tempuri.org/StoreDBDataSet3.xsd" xmlns="http://tempuri.org/StoreDBDataSet3.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="StoreDBConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="StoreDBConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.StoreManager.Properties.Settings.GlobalReference.Default.StoreDBConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="NhaCungCapTableAdapter" GeneratorDataComponentClassName="NhaCungCapTableAdapter" Name="NhaCungCap" UserDataComponentName="NhaCungCapTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="StoreDBConnectionString (Settings)" DbObjectName="StoreDB.dbo.NhaCungCap" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT tenNCC FROM dbo.NhaCungCap</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="tenNCC" DataSetColumn="tenNCC" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="StoreDBDataSet3" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="StoreDBDataSet3" msprop:Generator_UserDSName="StoreDBDataSet3">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="NhaCungCap" msprop:Generator_TableClassName="NhaCungCapDataTable" msprop:Generator_TableVarName="tableNhaCungCap" msprop:Generator_TablePropName="NhaCungCap" msprop:Generator_RowDeletingName="NhaCungCapRowDeleting" msprop:Generator_RowChangingName="NhaCungCapRowChanging" msprop:Generator_RowEvHandlerName="NhaCungCapRowChangeEventHandler" msprop:Generator_RowDeletedName="NhaCungCapRowDeleted" msprop:Generator_UserTableName="NhaCungCap" msprop:Generator_RowChangedName="NhaCungCapRowChanged" msprop:Generator_RowEvArgName="NhaCungCapRowChangeEvent" msprop:Generator_RowClassName="NhaCungCapRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="tenNCC" msprop:Generator_ColumnVarNameInTable="columntenNCC" msprop:Generator_ColumnPropNameInRow="tenNCC" msprop:Generator_ColumnPropNameInTable="tenNCCColumn" msprop:Generator_UserColumnName="tenNCC" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -262,25 +262,95 @@ namespace StoreManager.DAL
             }
         }
 
-        public DataTable selectHangHoa_ByCondition(string tenloaiHH, string tinhtrang)
+        public DataTable selectHangHoa_ByTinhTrang(string tinhtrang)
         {
-            string query = "SELECT maHH, tenHH, soluong, dongia, donvitinh, tenloaiHH, chatlieu " +
-                            "FROM HangHoa, LoaiHangHoa, DonViTinh " +
-                             "WHERE HangHoa.maloaiHH = LoaiHangHoa.maloaiHH " +
-                                "and HangHoa.donvitinh = DonViTinh.tenDV " +
-                                    "and LoaiHangHoa.tenloaiHH = @TenloaiHH " +
-                                        "and hidden = 1";
 
+
+            query = "SELECT maHH, tenHH, soluong, dongia, donvitinh, tenloaiHH, chatlieu " +
+                        "FROM HangHoa, LoaiHangHoa, DonViTinh " +
+                         "WHERE HangHoa.maloaiHH = LoaiHangHoa.maloaiHH " +
+                            "and HangHoa.donvitinh = DonViTinh.tenDV " +
+                                    "and soluong <> 0 " +
+                                        "and hidden = 1";
             if (tinhtrang.Equals("hết hàng"))
             {
                 query = "SELECT maHH, tenHH, soluong, dongia, donvitinh, tenloaiHH, chatlieu " +
                            "FROM HangHoa, LoaiHangHoa, DonViTinh " +
                             "WHERE HangHoa.maloaiHH = LoaiHangHoa.maloaiHH " +
                                "and HangHoa.donvitinh = DonViTinh.tenDV " +
-                                   "and LoaiHangHoa.tenloaiHH = @TenloaiHH " +
-                                       "and soluong = 0" +
-                                       "and hidden = 1";
+                                       "and soluong = 0 " +
+                                            "and hidden = 1";
             } 
+
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    sda.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public DataTable selectHangHoa_ById(string maHH)
+        {
+            query = "SELECT maHH, tenHH, soluong, dongia, donvitinh, tenloaiHH, chatlieu " +
+                            "FROM HangHoa, LoaiHangHoa, DonViTinh " +
+                             "WHERE HangHoa.maloaiHH = LoaiHangHoa.maloaiHH " +
+                                "and HangHoa.donvitinh = DonViTinh.tenDV " +
+                                    "and maHH like @MaHH " +
+                                    "and hidden = 1";
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@MaHH", SqlDbType.VarChar).Value = "%" + maHH.Trim() + "%";
+
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    sda.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public DataTable selectHangHoa_ByName(string tenHH)
+        {
+            query = "SELECT maHH, tenHH, soluong, dongia, donvitinh, tenloaiHH, chatlieu " +
+                            "FROM HangHoa, LoaiHangHoa, DonViTinh " +
+                             "WHERE HangHoa.maloaiHH = LoaiHangHoa.maloaiHH " +
+                                "and HangHoa.donvitinh = DonViTinh.tenDV " +
+                                    "and tenHH like @TenHH " +
+                                    "and hidden = 1";
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@TenHH", SqlDbType.NVarChar).Value = "%" + tenHH.Trim() + "%";
+
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    sda.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public DataTable selectHangHoa_ByLoaiHangHoa(string tenloaiHH)
+        {
+
+
+            string query = "SELECT maHH, tenHH, soluong, dongia, donvitinh, tenloaiHH, chatlieu " +
+                            "FROM HangHoa, LoaiHangHoa, DonViTinh " +
+                             "WHERE HangHoa.maloaiHH = LoaiHangHoa.maloaiHH " +
+                                "and HangHoa.donvitinh = DonViTinh.tenDV " +
+                                    "and tenloaiHH = @TenloaiHH " +
+                                        "and hidden = 1";
 
             using (conn)
             {

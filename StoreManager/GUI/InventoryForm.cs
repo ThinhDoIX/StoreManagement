@@ -22,7 +22,8 @@ namespace StoreManager
         public InventoryForm()
         {
             InitializeComponent();
-            showHangHoa();   
+            cb_tenloaiHH.SelectedIndex = -1;
+            showHangHoa();
         }
 
         private void showHangHoa()
@@ -69,12 +70,17 @@ namespace StoreManager
 
         private void InventoryForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'storeDBDataSet3.NhaCungCap' table. You can move, or remove it, as needed.
+            this.nhaCungCapTableAdapter.Fill(this.storeDBDataSet3.NhaCungCap);
             // TODO: This line of code loads data into the 'storeDBDataSet2.LoaiHangHoa' table. You can move, or remove it, as needed.
             this.loaiHangHoaTableAdapter1.Fill(this.storeDBDataSet2.LoaiHangHoa);
             // TODO: This line of code loads data into the 'storeDBDataSet1.HangHoa' table. You can move, or remove it, as needed.
             this.hangHoaTableAdapter.Fill(this.storeDBDataSet1.HangHoa);
             // TODO: This line of code loads data into the 'storeDBDataSet.LoaiHangHoa' table. You can move, or remove it, as needed.
             this.loaiHangHoaTableAdapter.Fill(this.storeDBDataSet.LoaiHangHoa);
+
+            cb_tenloaiHH.SelectedIndex = -1;
+            cb_nhacungcap.SelectedIndex = -1;
 
         }
 
@@ -113,14 +119,53 @@ namespace StoreManager
 
         private void btn_timkiem_Click(object sender, EventArgs e)
         {
-            DataProvider provider = new DataProvider();
-            dgvHangHoa.DataSource = provider.selectHangHoa_ByCondition(cb_tenloaiHH.Text, cb_tinhtrang.Text.Trim().ToLower());
+            
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void btn_reset_Click(object sender, EventArgs e)
         {
             showHangHoa();
             cb_tenloaiHH.SelectedIndex = -1;
+            cb_nhacungcap.SelectedIndex = -1;
+        }
+
+        private void txt_search_maHH_TextChanged(object sender, EventArgs e)
+        {
+            DataProvider provider = new DataProvider();
+            dgvHangHoa.DataSource = provider.selectHangHoa_ById(txt_search_maHH.Text);
+
+            if ((txt_search_maHH.Text).Equals(String.Empty))
+            {
+                showHangHoa();
+            }
+        }
+
+        private void txt_search_tenHH_TextChanged(object sender, EventArgs e)
+        {
+            DataProvider provider = new DataProvider();
+            dgvHangHoa.DataSource = provider.selectHangHoa_ByName(txt_search_tenHH.Text);
+
+            if ((txt_search_tenHH.Text).Equals(String.Empty))
+            {
+                showHangHoa();
+            }
+        }
+
+        private void cb_tenloaiHH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataProvider provider = new DataProvider();
+            dgvHangHoa.DataSource = provider.selectHangHoa_ByLoaiHangHoa(cb_tenloaiHH.Text);
+            
+            if(cb_tenloaiHH.Text == "")
+            {
+                showHangHoa();
+            }
+        }
+
+        private void cb_tinhtrang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataProvider provider = new DataProvider();
+            dgvHangHoa.DataSource = provider.selectHangHoa_ByTinhTrang(cb_tinhtrang.Text.Trim().ToLower());
         }
     }
 }
