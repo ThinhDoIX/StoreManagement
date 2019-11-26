@@ -76,7 +76,7 @@ namespace StoreManager.DAL
                                          "userpassword, " +
                                          "avata) values (@MaNV, @TenNV, @Gioitinh, @Diachi, @Sodienthoai, @Ngaysinh, @Email, @MaloaiNV, @Username, @Userpassword, @Avata)";
 
-            string auto_maNV = generateAutoMaNhanVien();
+            string auto_maNV = GenerateAutoMaNhanVien();
 
             using (conn)
             {
@@ -100,7 +100,7 @@ namespace StoreManager.DAL
             conn.Close();
         }
 
-        public DataTable selectAllNhanVien()
+        public DataTable SelectAllNhanVien()
         {
             String query = "Select maNV, tenNV, sodienthoai, gioitinh, ngaysinh, email, diachi, tenloaiNV, username, userpassword " +
                                 "from NhanVien, LoaiNhanVien " +
@@ -119,22 +119,8 @@ namespace StoreManager.DAL
             }
         }
 
-        private string generateAutoMaNhanVien()
+        private string GenerateAutoMaNhanVien()
         {
-            /*
-            using (conn) {
-                conn.Open();
-                using (SqlCommand sqlcmd = new SqlCommand(q, conn))
-                {
-                    SqlDataReader sdr = sqlcmd.ExecuteReader();
-                    while (sdr.Read())
-                    {
-                        // Lấy dữ liệu cho từng cột
-                        maxMaNhanVien = (string)sdr["maxid"];
-                    }
-                }
-            }
-            */
             string q = "select top 1 maNV as [maxid] from NhanVien order by maNV DESC";
             string maxMaNhanVien = "";
 
@@ -233,6 +219,76 @@ namespace StoreManager.DAL
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    sda.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public int Delete_HangHoa(string mahh)
+        {
+            query = "Update HangHoa SET hidden = 0 where maHH = @MaHH";
+
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@MaHH", SqlDbType.VarChar).Value = mahh;
+                    return cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public int Update_HangHoa(string tenHH, string dongia, string maHH)
+        {
+
+            query = "UPDATE HangHoa " +
+                        "SET tenHH = @TenHH, " +
+                            "dongia = @Dongia " +
+                                "WHERE maHH = @MaHH ";
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@TenHH", SqlDbType.NVarChar).Value = tenHH;
+                    cmd.Parameters.Add("@Dongia", SqlDbType.Float).Value = float.Parse(dongia);
+                    cmd.Parameters.Add("@MaHH", SqlDbType.VarChar).Value = maHH;
+                    return cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public DataTable selectHangHoa_ByCondition(string tenloaiHH, string tinhtrang)
+        {
+            string query = "SELECT maHH, tenHH, soluong, dongia, donvitinh, tenloaiHH, chatlieu " +
+                            "FROM HangHoa, LoaiHangHoa, DonViTinh " +
+                             "WHERE HangHoa.maloaiHH = LoaiHangHoa.maloaiHH " +
+                                "and HangHoa.donvitinh = DonViTinh.tenDV " +
+                                    "and LoaiHangHoa.tenloaiHH = @TenloaiHH " +
+                                        "and hidden = 1";
+
+            if (tinhtrang.Equals("hết hàng"))
+            {
+                query = "SELECT maHH, tenHH, soluong, dongia, donvitinh, tenloaiHH, chatlieu " +
+                           "FROM HangHoa, LoaiHangHoa, DonViTinh " +
+                            "WHERE HangHoa.maloaiHH = LoaiHangHoa.maloaiHH " +
+                               "and HangHoa.donvitinh = DonViTinh.tenDV " +
+                                   "and LoaiHangHoa.tenloaiHH = @TenloaiHH " +
+                                       "and soluong = 0" +
+                                       "and hidden = 1";
+            } 
+
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@TenloaiHH", SqlDbType.NVarChar).Value = tenloaiHH;
+
                     DataTable dt = new DataTable();
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     sda.Fill(dt);
