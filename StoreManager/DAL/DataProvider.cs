@@ -220,5 +220,25 @@ namespace StoreManager.DAL
                 }
             }
         }
+
+        public DataTable SelectAllHangHoa()
+        {
+            string query = "SELECT maHH, tenHH, soluong, dongia, donvitinh, tenloaiHH, chatlieu " +
+                            "FROM HangHoa, LoaiHangHoa, DonViTinh " +
+                             "WHERE HangHoa.maloaiHH = LoaiHangHoa.maloaiHH " +
+                                "and HangHoa.donvitinh = DonViTinh.tenDV " + 
+                                    "and hidden = 1";
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    sda.Fill(dt);
+                    return dt;
+                }
+            }
+        }
     }
 }
