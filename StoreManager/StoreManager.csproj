@@ -132,6 +132,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StoreDBDataSet3.xsd</DependentUpon>
     </Compile>
+    <Compile Include="StoreDBDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StoreDBDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="StoreDBDataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StoreDBDataSet5.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GUI\EmployeeForm.resx">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -222,6 +232,28 @@
     <None Include="StoreDBDataSet3.xss">
       <DependentUpon>StoreDBDataSet3.xsd</DependentUpon>
     </None>
+    <None Include="StoreDBDataSet4.xsc">
+      <DependentUpon>StoreDBDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="StoreDBDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StoreDBDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="StoreDBDataSet4.xss">
+      <DependentUpon>StoreDBDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="StoreDBDataSet5.xsc">
+      <DependentUpon>StoreDBDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="StoreDBDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StoreDBDataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="StoreDBDataSet5.xss">
+      <DependentUpon>StoreDBDataSet5.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -249,6 +281,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\quat_ban_senko1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\no_picture.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\No_picture.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

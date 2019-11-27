@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Login));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_about = new System.Windows.Forms.Button();
             this.btn_forgetPassword = new System.Windows.Forms.Button();
@@ -142,6 +143,7 @@
             this.ClientSize = new System.Drawing.Size(498, 205);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form_Login";

@@ -49,6 +49,8 @@
             this.txt_search_maHH = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.cb_nhacungcap = new System.Windows.Forms.ComboBox();
+            this.nhaCungCapBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.storeDBDataSet3 = new StoreManager.StoreDBDataSet3();
             this.label10 = new System.Windows.Forms.Label();
             this.cb_tenloaiHH = new System.Windows.Forms.ComboBox();
             this.loaiHangHoaBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -78,13 +80,13 @@
             this.hangHoaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.hangHoaTableAdapter = new StoreManager.StoreDBDataSet1TableAdapters.HangHoaTableAdapter();
             this.loaiHangHoaTableAdapter1 = new StoreManager.StoreDBDataSet2TableAdapters.LoaiHangHoaTableAdapter();
-            this.storeDBDataSet3 = new StoreManager.StoreDBDataSet3();
-            this.nhaCungCapBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nhaCungCapTableAdapter = new StoreManager.StoreDBDataSet3TableAdapters.NhaCungCapTableAdapter();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHangHoa)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nhaCungCapBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.storeDBDataSet3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loaiHangHoaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeDBDataSet)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -92,8 +94,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.storeDBDataSet2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeDBDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hangHoaBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.storeDBDataSet3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nhaCungCapBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox3
@@ -307,6 +307,16 @@
             this.cb_nhacungcap.TabIndex = 17;
             this.cb_nhacungcap.ValueMember = "tenNCC";
             // 
+            // nhaCungCapBindingSource
+            // 
+            this.nhaCungCapBindingSource.DataMember = "NhaCungCap";
+            this.nhaCungCapBindingSource.DataSource = this.storeDBDataSet3;
+            // 
+            // storeDBDataSet3
+            // 
+            this.storeDBDataSet3.DataSetName = "StoreDBDataSet3";
+            this.storeDBDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -469,6 +479,7 @@
             this.txt_dongia.Name = "txt_dongia";
             this.txt_dongia.Size = new System.Drawing.Size(138, 22);
             this.txt_dongia.TabIndex = 6;
+            this.txt_dongia.TextChanged += new System.EventHandler(this.txt_dongia_TextChanged);
             // 
             // label4
             // 
@@ -559,16 +570,6 @@
             // 
             this.loaiHangHoaTableAdapter1.ClearBeforeFill = true;
             // 
-            // storeDBDataSet3
-            // 
-            this.storeDBDataSet3.DataSetName = "StoreDBDataSet3";
-            this.storeDBDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // nhaCungCapBindingSource
-            // 
-            this.nhaCungCapBindingSource.DataMember = "NhaCungCap";
-            this.nhaCungCapBindingSource.DataSource = this.storeDBDataSet3;
-            // 
             // nhaCungCapTableAdapter
             // 
             this.nhaCungCapTableAdapter.ClearBeforeFill = true;
@@ -591,6 +592,8 @@
             this.panel1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nhaCungCapBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.storeDBDataSet3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loaiHangHoaBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeDBDataSet)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -599,8 +602,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.storeDBDataSet2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeDBDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hangHoaBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.storeDBDataSet3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nhaCungCapBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

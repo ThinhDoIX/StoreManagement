@@ -167,5 +167,10 @@ namespace StoreManager
             DataProvider provider = new DataProvider();
             dgvHangHoa.DataSource = provider.selectHangHoa_ByTinhTrang(cb_tinhtrang.Text.Trim().ToLower());
         }
+
+        private void txt_dongia_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

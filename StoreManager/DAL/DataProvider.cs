@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace StoreManager.DAL
@@ -63,7 +64,7 @@ namespace StoreManager.DAL
 
         public void Insert_NhanVien(NhanVien nhanvien)
         {
-
+            
             query = "Insert into NhanVien (maNV, " +
                                          "tenNV, " +
                                          "gioitinh, " +
@@ -75,7 +76,8 @@ namespace StoreManager.DAL
                                          "username, " +
                                          "userpassword, " +
                                          "avata) values (@MaNV, @TenNV, @Gioitinh, @Diachi, @Sodienthoai, @Ngaysinh, @Email, @MaloaiNV, @Username, @Userpassword, @Avata)";
-
+            
+           
             string auto_maNV = GenerateAutoMaNhanVien();
 
             using (conn)
@@ -96,13 +98,11 @@ namespace StoreManager.DAL
                     cmd.ExecuteNonQuery();
                 }
             }
-
-            conn.Close();
         }
 
         public DataTable SelectAllNhanVien()
         {
-            String query = "Select maNV, tenNV, sodienthoai, gioitinh, ngaysinh, email, diachi, tenloaiNV, username, userpassword " +
+            String query = "Select maNV, tenNV, sodienthoai, gioitinh, ngaysinh, email, diachi, tenloaiNV, username, userpassword, avata " +
                                 "from NhanVien, LoaiNhanVien " +
                                     "where NhanVien.maloaiNV = LoaiNhanVien.maloaiNV " +
                                         "and hidden = 1";
@@ -164,7 +164,7 @@ namespace StoreManager.DAL
         public DataTable SelectNhanVien_ByName(string name)
         {
 
-            String query = "Select tenNV, sodienthoai, gioitinh, ngaysinh, email, diachi, tenloaiNV, username, userpassword " +
+            String query = "Select tenNV, sodienthoai, gioitinh, ngaysinh, email, diachi, tenloaiNV, username, userpassword, avata " +
                                 "from NhanVien, LoaiNhanVien " +
                                     "where NhanVien.maloaiNV = LoaiNhanVien.maloaiNV " +
                                         "and NhanVien.tenNV like @TenNV " +
@@ -187,10 +187,10 @@ namespace StoreManager.DAL
         public DataTable SelectNhanVien_ByRole(string role)
         {
 
-            String query = "Select tenNV, sodienthoai, gioitinh, ngaysinh, email, diachi, tenloaiNV, username, userpassword " +
+            String query = "Select tenNV, sodienthoai, gioitinh, ngaysinh, email, diachi, tenloaiNV, username, userpassword, avata " +
                                 "from NhanVien, LoaiNhanVien " +
                                     "where NhanVien.maloaiNV = LoaiNhanVien.maloaiNV " +
-                                        "and LoaiNhanVien.tenloaiNV like @Chucvu" +
+                                        "and LoaiNhanVien.tenloaiNV like @Chucvu " +
                                             "and hidden = 1";
             DataTable dt = new DataTable();
             using (conn)
@@ -363,6 +363,71 @@ namespace StoreManager.DAL
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     sda.Fill(dt);
                     return dt;
+                }
+            }
+        }
+
+        public string SophieuGenerator()
+        {
+            query = "Select top 1 maPNK as [sophieu] from PhieuNhapKho ORDER BY maPNK DESC";
+
+            using (conn)
+            {
+                string sophieu = "";
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn)) {
+                    SqlDataReader sdr = cmd.ExecuteReader();
+                    while (sdr.Read())
+                    {
+                        // Lấy dữ liệu cho từng cột
+                        sophieu = sdr["sophieu"].ToString();
+                    }
+                }
+                sophieu = Regex.Match(sophieu, @"\d+").Value;
+                int num = Convert.ToInt32(sophieu) + 1;
+                return "PNK" + num;
+            }
+        }
+
+        public DataTable selectHangHoa_ByTenHangHoa(string tenHH)
+        {
+
+
+            string query = "SELECT maHH, tenHH, soluong, dongia, donvitinh, tenloaiHH, chatlieu " +
+                            "FROM HangHoa, LoaiHangHoa, DonViTinh " +
+                             "WHERE HangHoa.maloaiHH = LoaiHangHoa.maloaiHH " +
+                                "and HangHoa.donvitinh = DonViTinh.tenDV " +
+                                    "and tenHH = @TenHH " +
+                                        "and hidden = 1";
+
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@TenHH", SqlDbType.NVarChar).Value = tenHH;
+
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    sda.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public int SaveImage(string path, string maNV)
+        {
+            query = "Update NhanVien Set avata = @Avata where maNV = @maNV";
+
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@Avata", SqlDbType.VarChar).Value = path;
+                    cmd.Parameters.Add("@MaNV", SqlDbType.VarChar).Value = maNV;
+
+                    return cmd.ExecuteNonQuery();
                 }
             }
         }

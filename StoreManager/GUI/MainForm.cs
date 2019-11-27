@@ -92,7 +92,7 @@ namespace StoreManager
 
         private void lậpPhiếuNhậpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GoodsReceiptForm goodsReceiptForm = new GoodsReceiptForm();
+            GoodsReceiptForm goodsReceiptForm = new GoodsReceiptForm(nhanvien);
             goodsReceiptForm.ShowDialog();
         }
     }

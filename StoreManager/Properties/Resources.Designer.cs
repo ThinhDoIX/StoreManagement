@@ -103,6 +103,16 @@ namespace StoreManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap No_picture {
+            get {
+                object obj = ResourceManager.GetObject("No_picture", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap quat_ban_senko {
             get {
                 object obj = ResourceManager.GetObject("quat_ban_senko", resourceCulture);

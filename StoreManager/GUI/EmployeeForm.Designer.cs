@@ -46,7 +46,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txt_hoten = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pic_avata = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txt_search = new System.Windows.Forms.TextBox();
@@ -68,7 +68,7 @@
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_avata)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployee)).BeginInit();
             this.SuspendLayout();
@@ -87,7 +87,7 @@
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel2.Controls.Add(this.lbl_maNV);
             this.panel2.Controls.Add(this.panel4);
-            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Controls.Add(this.pic_avata);
             this.panel2.Location = new System.Drawing.Point(3, 134);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(361, 489);
@@ -96,10 +96,10 @@
             // lbl_maNV
             // 
             this.lbl_maNV.AutoSize = true;
-            this.lbl_maNV.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_maNV.Location = new System.Drawing.Point(269, 145);
+            this.lbl_maNV.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_maNV.Location = new System.Drawing.Point(216, 130);
             this.lbl_maNV.Name = "lbl_maNV";
-            this.lbl_maNV.Size = new System.Drawing.Size(63, 29);
+            this.lbl_maNV.Size = new System.Drawing.Size(102, 44);
             this.lbl_maNV.TabIndex = 7;
             this.lbl_maNV.Text = "nv01";
             // 
@@ -232,6 +232,7 @@
             this.txt_hoten.Name = "txt_hoten";
             this.txt_hoten.Size = new System.Drawing.Size(218, 22);
             this.txt_hoten.TabIndex = 7;
+            this.txt_hoten.TextChanged += new System.EventHandler(this.txt_hoten_TextChanged);
             // 
             // label2
             // 
@@ -242,15 +243,16 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Họ và tên:";
             // 
-            // pictureBox1
+            // pic_avata
             // 
-            this.pictureBox1.Image = global::StoreManager.Properties.Resources.white_cate;
-            this.pictureBox1.Location = new System.Drawing.Point(88, 14);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(160, 160);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
+            this.pic_avata.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pic_avata.Location = new System.Drawing.Point(6, 14);
+            this.pic_avata.Name = "pic_avata";
+            this.pic_avata.Size = new System.Drawing.Size(160, 160);
+            this.pic_avata.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pic_avata.TabIndex = 14;
+            this.pic_avata.TabStop = false;
+            this.pic_avata.Click += new System.EventHandler(this.pic_avata_Click);
             // 
             // groupBox1
             // 
@@ -451,7 +453,7 @@
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_avata)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployee)).EndInit();
@@ -472,7 +474,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txt_hoten;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pic_avata;
         private System.Windows.Forms.TextBox txt_search;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label5;

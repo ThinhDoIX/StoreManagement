@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.nhansuMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,14 +94,14 @@
             // lậpHóaĐơnToolStripMenuItem
             // 
             this.lậpHóaĐơnToolStripMenuItem.Name = "lậpHóaĐơnToolStripMenuItem";
-            this.lậpHóaĐơnToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.lậpHóaĐơnToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.lậpHóaĐơnToolStripMenuItem.Text = "Lập hóa đơn";
             this.lậpHóaĐơnToolStripMenuItem.Click += new System.EventHandler(this.lậpHóaĐơnToolStripMenuItem_Click);
             // 
             // đăngKíKháchHàngToolStripMenuItem
             // 
             this.đăngKíKháchHàngToolStripMenuItem.Name = "đăngKíKháchHàngToolStripMenuItem";
-            this.đăngKíKháchHàngToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.đăngKíKháchHàngToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.đăngKíKháchHàngToolStripMenuItem.Text = "Đăng kí khách hàng";
             // 
             // khohangMenu
@@ -213,6 +214,7 @@
             this.ClientSize = new System.Drawing.Size(1112, 683);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;

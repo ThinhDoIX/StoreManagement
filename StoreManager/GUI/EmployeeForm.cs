@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace StoreManager
         private NhanVien nhanvien;
         private string username;
         private string password;
+        private string avata;
         int rowindex;
 
         public EmployeeForm(NhanVien nhanvien)
@@ -42,6 +44,7 @@ namespace StoreManager
             dgvEmployee.Columns["userpassword"].Visible = false;
             dgvEmployee.Columns["diachi"].Visible = false;
             dgvEmployee.Columns["maNV"].Visible = false;
+            dgvEmployee.Columns["avata"].Visible = false;
         }
 
         private void EmployeeForm_Load(object sender, EventArgs e)
@@ -97,6 +100,7 @@ namespace StoreManager
         private void dgvEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             rowindex = e.RowIndex;
+            avata = "";
             if(rowindex > -1)
             {
                 txt_hoten.Text = dgvEmployee[1, e.RowIndex].Value.ToString();
@@ -106,6 +110,18 @@ namespace StoreManager
                 txt_email.Text = dgvEmployee[5, e.RowIndex].Value.ToString();
                 txt_diachi.Text = dgvEmployee[6, e.RowIndex].Value.ToString();
                 lbl_maNV.Text = dgvEmployee[0, e.RowIndex].Value.ToString();
+
+                avata = dgvEmployee[10, e.RowIndex].Value.ToString();
+                if(!avata.Equals(String.Empty))
+                {
+                    pic_avata.Image = Image.FromFile(avata);
+                    pic_avata.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else
+                {
+                    pic_avata.Image = Properties.Resources.No_picture;
+                    pic_avata.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
             }
             else
             {
@@ -165,6 +181,37 @@ namespace StoreManager
 
         private void btn_khoiphuc_Click(object sender, EventArgs e)
         {
+        }
+
+        private void txt_hoten_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void pic_avata_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "PNG Files(*.PNG) | *.PNG";
+            if (dlg.ShowDialog(this) == DialogResult.OK) {
+                pic_avata.Image = Image.FromFile(dlg.FileName);
+                pic_avata.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                FileInfo info = new FileInfo(dlg.FileName);
+                string path_images = @"images/" + dgvEmployee[0, rowindex].Value.ToString() + ".png";
+                info.CopyTo(path_images, true);
+
+                DataProvider provider = new DataProvider();
+                int result = provider.SaveImage(path_images, dgvEmployee[0, rowindex].Value.ToString());
+                if(result > 0)
+                {
+                    MessageBox.Show("Cập nhật ảnh thành công", "Thông báo");
+                }
+                else
+                {
+                    MessageBox.Show("Cập nhật ảnh thất bại", "Thông báo");
+                }
+                //MessageBox.Show("Image filename: " + dlg.FileName, "Thông báo");
+            }
         }
     }
 }
