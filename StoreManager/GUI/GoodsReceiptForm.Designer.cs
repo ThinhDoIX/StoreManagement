@@ -34,9 +34,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.btn_them = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.dgv_chitiethd = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cb_tenHH = new System.Windows.Forms.ComboBox();
             this.hangHoaBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -83,9 +81,7 @@
             // 
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.btn_them);
-            this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.dgv_chitiethd);
-            this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.label1);
@@ -128,22 +124,13 @@
             // btn_them
             // 
             this.btn_them.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btn_them.Location = new System.Drawing.Point(36, 528);
+            this.btn_them.Location = new System.Drawing.Point(9, 528);
             this.btn_them.Name = "btn_them";
-            this.btn_them.Size = new System.Drawing.Size(116, 48);
+            this.btn_them.Size = new System.Drawing.Size(83, 48);
             this.btn_them.TabIndex = 0;
             this.btn_them.Text = "Thêm";
             this.btn_them.UseVisualStyleBackColor = false;
             this.btn_them.Click += new System.EventHandler(this.btn_them_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(158, 528);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(116, 48);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Sửa";
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // dgv_chitiethd
             // 
@@ -154,16 +141,6 @@
             this.dgv_chitiethd.Size = new System.Drawing.Size(627, 353);
             this.dgv_chitiethd.TabIndex = 3;
             this.dgv_chitiethd.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_chitiethd_CellContentClick);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Red;
-            this.button2.Location = new System.Drawing.Point(280, 528);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(116, 48);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Xóa";
-            this.button2.UseVisualStyleBackColor = false;
             // 
             // groupBox2
             // 
@@ -486,8 +463,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btn_them;
         private System.Windows.Forms.ComboBox cb_ncc;
         private System.Windows.Forms.Label label6;

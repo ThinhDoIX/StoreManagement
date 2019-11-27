@@ -164,7 +164,7 @@ namespace StoreManager.DAL
         public DataTable SelectNhanVien_ByName(string name)
         {
 
-            String query = "Select tenNV, sodienthoai, gioitinh, ngaysinh, email, diachi, tenloaiNV, username, userpassword, avata " +
+            String query = "Select maNV, tenNV, sodienthoai, gioitinh, ngaysinh, email, diachi, tenloaiNV, username, userpassword, avata " +
                                 "from NhanVien, LoaiNhanVien " +
                                     "where NhanVien.maloaiNV = LoaiNhanVien.maloaiNV " +
                                         "and NhanVien.tenNV like @TenNV " +
@@ -187,7 +187,7 @@ namespace StoreManager.DAL
         public DataTable SelectNhanVien_ByRole(string role)
         {
 
-            String query = "Select tenNV, sodienthoai, gioitinh, ngaysinh, email, diachi, tenloaiNV, username, userpassword, avata " +
+            String query = "Select maNV, tenNV, sodienthoai, gioitinh, ngaysinh, email, diachi, tenloaiNV, username, userpassword, avata " +
                                 "from NhanVien, LoaiNhanVien " +
                                     "where NhanVien.maloaiNV = LoaiNhanVien.maloaiNV " +
                                         "and LoaiNhanVien.tenloaiNV like @Chucvu " +

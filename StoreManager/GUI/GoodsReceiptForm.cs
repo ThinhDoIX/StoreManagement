@@ -83,7 +83,7 @@ namespace StoreManager.GUI
 
         private void btn_them_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void dgv_chitiethd_CellContentClick(object sender, DataGridViewCellEventArgs e)
