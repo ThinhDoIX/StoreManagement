@@ -86,20 +86,34 @@ namespace StoreManager
 
         private void btn_xoa_Click(object sender, EventArgs e)
         {
-            DataGridViewRow row = new DataGridViewRow();
-            row = dgvHangHoa.Rows[currentRowIndex];
-
-            DataProvider provider = new DataProvider();
-            int result = provider.Delete_HangHoa(row.Cells[0].Value.ToString());
-            if (result > 0)
+            DialogResult delete_commit = MessageBox.Show("Bạn có chắc chắn muốn xóa?", "Thông báo", MessageBoxButtons.YesNo);
+            if(delete_commit == DialogResult.Yes)
             {
-                MessageBox.Show("Đã xóa hàng hóa mã số: " + row.Cells[0].Value.ToString(), "Thông báo");
-                showHangHoa();
+                DataGridViewRow row = new DataGridViewRow();
+                row = dgvHangHoa.Rows[currentRowIndex];
+
+                DataProvider provider = new DataProvider();
+                int result = provider.Delete_HangHoa(row.Cells[0].Value.ToString());
+                if (result > 0)
+                {
+                    MessageBox.Show("Đã xóa hàng hóa mã số: " + row.Cells[0].Value.ToString(), "Thông báo");
+                    showHangHoa();
+                }
+                else
+                {
+                    MessageBox.Show("Xóa thất bại", "Thông báo");
+                }
+            } 
+            else if(delete_commit == DialogResult.No)
+            {
+                ;
             }
             else
             {
-                MessageBox.Show("Xóa thất bại", "Thông báo");
+                ;
             }
+
+            
         }
 
         private void btn_capnhat_Click(object sender, EventArgs e)

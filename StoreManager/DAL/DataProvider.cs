@@ -371,21 +371,29 @@ namespace StoreManager.DAL
         {
             query = "Select top 1 maPNK as [sophieu] from PhieuNhapKho ORDER BY maPNK DESC";
 
+            
             using (conn)
             {
                 string sophieu = "";
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn)) {
                     SqlDataReader sdr = cmd.ExecuteReader();
-                    while (sdr.Read())
+                    if(sdr.HasRows)
                     {
-                        // Lấy dữ liệu cho từng cột
-                        sophieu = sdr["sophieu"].ToString();
+                        while (sdr.Read())
+                        {
+                            // Lấy dữ liệu cho từng cột
+                            sophieu = sdr["sophieu"].ToString();
+                        }
+                        sophieu = Regex.Match(sophieu, @"\d+").Value;
+                        int num = Convert.ToInt32(sophieu) + 1;
+                        return "PNK" + num.ToString();
+                    }
+                    else
+                    {
+                        return "PNK1";
                     }
                 }
-                sophieu = Regex.Match(sophieu, @"\d+").Value;
-                int num = Convert.ToInt32(sophieu) + 1;
-                return "PNK" + num;
             }
         }
 
@@ -430,6 +438,67 @@ namespace StoreManager.DAL
                     return cmd.ExecuteNonQuery();
                 }
             }
+        }
+
+        public int Insert_PhieuNhapKho(PhieuNhapKho pnk)
+        {
+            query = "INSERT INTO PhieuNhapKho VALUES (@MaPNK, @Ngaylap, @Tongtien, @MaNV, @MaNCC)";
+
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@MaPNK", SqlDbType.VarChar).Value = pnk.MaPNK;
+                    cmd.Parameters.Add("@Ngaylap", SqlDbType.Date).Value = pnk.Ngaylap.Date;
+                    cmd.Parameters.Add("@Tongtien", SqlDbType.Float).Value = pnk.Tongtien;
+                    cmd.Parameters.Add("@MaNV", SqlDbType.VarChar).Value = pnk.Nhanvien.MaNV;
+                    cmd.Parameters.Add("@MaNCC", SqlDbType.VarChar).Value = pnk.MaNCC;
+                    
+                    return cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void Insert_ChiTietPhieuNhapKho(ChiTietPhieuNhapKho chitiet)
+        {
+            query = "INSERT INTO ChiTietPhieuNhapKho (maPNK, maHH, tenHH, soluong, dongia, thanhtien) " +
+                                             "VALUES (@MaPNK, @MaHH, @TenHH, @Soluong, @Dongia, @Thanhtien)";
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@MaPNK", SqlDbType.VarChar).Value = chitiet.SoPhieu;
+                    cmd.Parameters.Add("@MaHH", SqlDbType.VarChar).Value = chitiet.MaHH;
+                    cmd.Parameters.Add("@TenHH", SqlDbType.NVarChar).Value = chitiet.TenHH;
+                    cmd.Parameters.Add("@Soluong", SqlDbType.Int).Value = chitiet.Soluong;
+                    cmd.Parameters.Add("@Dongia", SqlDbType.Float).Value = float.Parse(chitiet.Dongia);
+                    cmd.Parameters.Add("@Thanhtien", SqlDbType.Float).Value = double.Parse(chitiet.Thanhtien);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public string Select_NCCByName(String tenNCC)
+        {
+            query = "SELECT maNCC FROM NhaCungCap WHERE tenNCC = @TenNCC";
+
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@TenNCC", SqlDbType.NVarChar).Value = tenNCC;
+                    SqlDataReader sdr = cmd.ExecuteReader();
+                    while(sdr.Read())
+                    {
+                        return sdr["maNCC"].ToString();
+                    }
+                }
+            }
+            return "";
         }
     }
 }

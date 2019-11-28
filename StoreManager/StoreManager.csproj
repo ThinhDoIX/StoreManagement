@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\ChiTietPhieuNhapKho.cs" />
+    <Compile Include="DTO\PhieuNhapKho.cs" />
     <Compile Include="GUI\CustomDesign\CircularButton.cs">
       <SubType>Component</SubType>
     </Compile>
