@@ -364,11 +364,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(293, 5);
+            this.label1.Location = new System.Drawing.Point(335, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(511, 69);
+            this.label1.Size = new System.Drawing.Size(411, 69);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Quản lý kho hàng";
+            this.label1.Text = "Quản lý vật tư";
             // 
             // groupBox1
             // 
@@ -416,7 +416,7 @@
             // 
             this.btn_capnhat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_capnhat.ForeColor = System.Drawing.Color.Black;
-            this.btn_capnhat.Location = new System.Drawing.Point(131, 357);
+            this.btn_capnhat.Location = new System.Drawing.Point(130, 357);
             this.btn_capnhat.Name = "btn_capnhat";
             this.btn_capnhat.Size = new System.Drawing.Size(146, 45);
             this.btn_capnhat.TabIndex = 15;
@@ -427,7 +427,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(11, 357);
+            this.button2.Location = new System.Drawing.Point(10, 357);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(114, 45);
             this.button2.TabIndex = 14;
@@ -437,7 +437,7 @@
             // btn_xoa
             // 
             this.btn_xoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_xoa.Location = new System.Drawing.Point(283, 357);
+            this.btn_xoa.Location = new System.Drawing.Point(282, 357);
             this.btn_xoa.Name = "btn_xoa";
             this.btn_xoa.Size = new System.Drawing.Size(114, 45);
             this.btn_xoa.TabIndex = 12;

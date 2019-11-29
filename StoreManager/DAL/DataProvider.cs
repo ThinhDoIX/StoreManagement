@@ -500,5 +500,162 @@ namespace StoreManager.DAL
             }
             return "";
         }
+
+        public string HoadonID_generator()
+        {
+            query = "Select top 1 maHD as [sohoadon] from HoaDon ORDER BY maHD DESC";
+
+
+            using (conn)
+            {
+                string sohoadon = "";
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataReader sdr = cmd.ExecuteReader();
+                    if (sdr.HasRows)
+                    {
+                        while (sdr.Read())
+                        {
+                            // Lấy dữ liệu cho từng cột
+                            sohoadon = sdr["sohoadon"].ToString();
+                        }
+                        sohoadon = Regex.Match(sohoadon, @"\d+").Value;
+                        int num = Convert.ToInt32(sohoadon) + 1;
+                        return "HD" + num.ToString();
+                    }
+                    else
+                    {
+                        return "HD1";
+                    }
+                }
+            }
+        }
+
+
+        public int Insert_HoaDon(HoaDon hd)
+        {
+            query = "INSERT INTO HoaDon VALUES (@MaHD, @MaNV, @Ngaylap, @Soluong, @Tongtien)";
+
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@MaHD", SqlDbType.VarChar).Value = hd.MaHD;
+                    cmd.Parameters.Add("@MaNV", SqlDbType.VarChar).Value = hd.Nhanvien.MaNV;
+                    cmd.Parameters.Add("@Ngaylap", SqlDbType.Date).Value = hd.Ngaylap.Date;
+                    cmd.Parameters.Add("@Soluong", SqlDbType.Int).Value = (Int32)hd.Soluong;
+                    cmd.Parameters.Add("@Tongtien", SqlDbType.Float).Value = hd.Tongtien;
+
+                    return cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void Insert_ChiTietHoaDon(ChiTietHoaDon chitiet)
+        {
+            query = "INSERT INTO ChiTietHoaDon (maHD, maHH, tenHH, dongia, soluong, thanhtien) " +
+                                             "VALUES (@MaHD, @MaHH, @TenHH, @Dongia, @Soluong, @Thanhtien)";
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@MaHD", SqlDbType.VarChar).Value = chitiet.MaHD;
+                    cmd.Parameters.Add("@MaHH", SqlDbType.VarChar).Value = chitiet.MaHH;
+                    cmd.Parameters.Add("@TenHH", SqlDbType.NVarChar).Value = chitiet.TenHH;
+                    cmd.Parameters.Add("@Soluong", SqlDbType.Int).Value = chitiet.Soluong;
+                    cmd.Parameters.Add("@Dongia", SqlDbType.Float).Value = float.Parse(chitiet.Dongia);
+                    cmd.Parameters.Add("@Thanhtien", SqlDbType.Float).Value = double.Parse(chitiet.Thanhtien);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public DataTable Select_Report()
+        {
+            query = "select maHD, tenNV, ngaylap, soluong, tongtien from HoaDon, NhanVien WHERE HoaDon.maNV = NhanVien.maNV";
+
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                { 
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    sda.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public DataTable Select_Report_ChiTiet(string maHD)
+        {
+            query = "select HangHoa.tenHH, ChiTietHoaDon.soluong, ChiTietHoaDon.thanhtien " +
+                        "FROM HoaDon, ChiTietHoaDon, HangHoa " +
+                            "WHERE ChiTietHoaDon.maHH = HangHoa.maHH " +
+                                "and ChiTietHoaDon.maHD = HoaDon.maHD " +
+                                    "and ChiTietHoaDon.maHD = @MaHD";
+
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@MaHD", SqlDbType.VarChar).Value = maHD;
+
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    sda.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public DataTable Select_FindReportByName(string tenNV)
+        {
+            query = "select HoaDon.maHD, NhanVien.tenNV, HoaDon.ngaylap, HoaDon.soluong, HoaDon.tongtien " +
+                        "FROM HoaDon, ChiTietHoaDon, HangHoa, NhanVien " +
+                            "WHERE ChiTietHoaDon.maHH = HangHoa.maHH " +
+                                "and ChiTietHoaDon.maHD = HoaDon.maHD " +
+                                    "and HoaDon.maNV = NhanVien.maNV " +
+                                        "and NhanVien.tenNV = @TenNV";
+
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@TenNV", SqlDbType.NVarChar).Value = tenNV;
+
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    sda.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        /*
+        public DataTable Select_Report(NhanVien nhanvien)
+        {
+            query = "select maHD, tenNV, ngaylap, soluong, tongtien from HoaDon, NhanVien WHERE HoaDon.maNV = NhanVien.maNV and HoaDon.maNV = @MaNV";
+
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@MaNV", SqlDbType.VarChar).Value = nhanvien.MaNV;
+
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    sda.Fill(dt);
+                    return dt;
+                }
+            }
+        } */
     }
 }

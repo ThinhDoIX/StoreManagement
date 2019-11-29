@@ -36,6 +36,7 @@ namespace StoreManager
             // TODO: Show detail left panel
         }
 
+        // Hiển thị toàn bộ nhân viên 
         private void ShowEmployees()
         {
             DataProvider provider = new DataProvider();
@@ -47,6 +48,9 @@ namespace StoreManager
             dgvEmployee.Columns["avata"].Visible = false;
         }
 
+        /**
+         *  Form Lòad 
+         */
         private void EmployeeForm_Load(object sender, EventArgs e)
         {
             ShowEmployees();
@@ -58,9 +62,12 @@ namespace StoreManager
             
         }
 
+        /**
+         *  Thêm nhân viên mới
+         */
         private void button_add_nhanvien_Click(object sender, EventArgs e)
         {
-            EmployeeRegisterForm employeeRegisterForm = new EmployeeRegisterForm();
+            EmployeeRegisterForm employeeRegisterForm = new EmployeeRegisterForm(null);
             employeeRegisterForm.ShowDialog();
             this.Refresh();
         }
@@ -157,7 +164,7 @@ namespace StoreManager
 
         private void btn_them_Click(object sender, EventArgs e)
         {
-            EmployeeRegisterForm employeeRegisterForm = new EmployeeRegisterForm();
+            EmployeeRegisterForm employeeRegisterForm = new EmployeeRegisterForm(nhanvien);
             employeeRegisterForm.ShowDialog();
         }
 

@@ -14,11 +14,37 @@ namespace StoreManager.GUI
 {
     public partial class EmployeeRegisterForm : Form
     {
-        public EmployeeRegisterForm()
+        private NhanVien nhanvien;
+
+        public EmployeeRegisterForm(NhanVien nhanvien)
         {
             InitializeComponent();
             this.Text = "Thêm nhân viên mới";
             //txt_reg_fullname.Focus();
+            this.nhanvien = nhanvien;
+            showProfile();
+        }
+
+        private void showProfile()
+        {
+            if(this.nhanvien != null)
+            {
+                txt_reg_fullname.Text = nhanvien.TenVN;
+                txt_reg_email.Text = nhanvien.Email;
+                txt_reg_address.Text = nhanvien.Diachi;
+                txt_reg_phone.Text = nhanvien.Sodienthoai;
+                txt_reg_username.Text = nhanvien.Username;
+                txt_reg_password.Text = nhanvien.Userpassword;
+                if(nhanvien.Gioitinh.Equals("Nam"))
+                {
+                    ckb_male.Checked = true;
+                }
+
+                else
+                {
+                    ckb_female.Checked = true;
+                }   
+            }
         }
 
         private void btn_reg_reset_Click(object sender, EventArgs e)
@@ -109,6 +135,5 @@ namespace StoreManager.GUI
         {
 
         }
-
     }
 }

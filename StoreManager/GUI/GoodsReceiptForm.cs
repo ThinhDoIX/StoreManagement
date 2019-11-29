@@ -21,6 +21,7 @@ namespace StoreManager.GUI
         private int sl;
         private double dg;
         private DataProvider provider;
+        private int rowIndex = -1;
 
         public GoodsReceiptForm(NhanVien nhanvien)
         {
@@ -111,11 +112,11 @@ namespace StoreManager.GUI
 
             List<ChiTietPhieuNhapKho> listchitiet = new List<ChiTietPhieuNhapKho>();
             ChiTietPhieuNhapKho ctpnk;
-            for(int i = 0; i < dgv_chitietPNK.Rows.Count - 1; i++)
+            for (int i = 0; i < dgv_chitietPNK.Rows.Count - 1; i++)
             {
                 ctpnk = new ChiTietPhieuNhapKho();
 
-                if(dgv_chitietPNK[0, i].Value != null)
+                if (dgv_chitietPNK[0, i].Value != null)
                 {
                     ctpnk.SoPhieu = pnk.MaPNK;
 
@@ -131,8 +132,8 @@ namespace StoreManager.GUI
 
             provider = new DataProvider();
             int pnk_success = provider.Insert_PhieuNhapKho(pnk);
-            
-            if(pnk_success > 0 && dgv_chitietPNK.Rows.Count > 0)
+
+            if (pnk_success > 0 && dgv_chitietPNK.Rows.Count > 0)
             {
                 foreach (ChiTietPhieuNhapKho chitiet in listchitiet)
                 {
@@ -140,10 +141,10 @@ namespace StoreManager.GUI
                     provider.Insert_ChiTietPhieuNhapKho(chitiet);
                 }
             }
-            
-            if(pnk_success > 0)
+
+            if (pnk_success > 0)
             {
-                MessageBox.Show("Lập phiếu thành công.", "Thông báo");   
+                MessageBox.Show("Lập phiếu thành công.", "Thông báo");
             }
             else
             {
@@ -153,10 +154,17 @@ namespace StoreManager.GUI
 
         private void numeric_soluong_ValueChanged(object sender, EventArgs e)
         {
-            dg = double.Parse(txt_dongia.Text);
-            sl = Convert.ToInt32(numeric_soluong.Value);
+            if(numeric_soluong.Value > 0)
+            {
+                dg = double.Parse(txt_dongia.Text);
+                sl = Convert.ToInt32(numeric_soluong.Value);
 
-            txt_thanhtien.Text = String.Format("{0:0,000.###}", double.Parse((dg * sl).ToString()));
+                txt_thanhtien.Text = String.Format("{0:0,000.###}", double.Parse((dg * sl).ToString()));
+            }
+            else
+            {
+                MessageBox.Show("Số lượng phải lớn hơn 0", "Thông báo");
+            }
         }
 
         private void cb_ncc_SelectedIndexChanged(object sender, EventArgs e)
@@ -167,6 +175,58 @@ namespace StoreManager.GUI
             {
                 txt_maNCC.Text = maNCC;
             }
+        }
+
+        private void dgv_chitietPNK_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.rowIndex = e.RowIndex;
+        }
+
+        private void btn_xoa_Click(object sender, EventArgs e)
+        {
+            if(dgv_chitietPNK[0, 0].Value != null)
+            {
+                if (this.rowIndex > -1)
+                {
+                    DialogResult delete_commit = MessageBox.Show("Bạn có chắc chắn muốn xóa?", "Thông báo", MessageBoxButtons.YesNo);
+                    if (delete_commit == DialogResult.Yes)
+                    {
+                        dgv_chitietPNK.Rows.RemoveAt(this.rowIndex);
+                        this.rowIndex = -1;
+                    }
+                    else if (delete_commit == DialogResult.No)
+                    {
+                        ;
+                    }
+                    else
+                    {
+                        ;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Bạn chưa chọn mục để xóa.", "Thông báo");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Chưa có mục nào để xóa", "Thông báo");
+            }
+        }
+        
+        private void cb_loaiPNK_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

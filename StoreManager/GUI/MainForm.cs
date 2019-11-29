@@ -36,6 +36,7 @@ namespace StoreManager
                     nhansuMenu.Visible = false;
                     thongkeMenu.Visible = false;
                     banhangMenu.Visible = false;
+                    khachhangMenuItem.Visible = false;
                     break;
                 default:
                     MessageBox.Show("Không tìm thấy quyền", "Thông báo");
@@ -59,7 +60,7 @@ namespace StoreManager
 
         private void lậpHóaĐơnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OrderForm order_form = new OrderForm();
+            OrderForm order_form = new OrderForm(nhanvien);
             order_form.MdiParent = this;
             order_form.Dock = DockStyle.Fill;
             order_form.Top = 5;
@@ -94,6 +95,29 @@ namespace StoreManager
         {
             GoodsReceiptForm goodsReceiptForm = new GoodsReceiptForm(nhanvien);
             goodsReceiptForm.ShowDialog();
+        }
+
+        private void nhậpHàngMớiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewGoodReceiptForm newGoodReceiptForm = new NewGoodReceiptForm();
+            newGoodReceiptForm.ShowDialog();
+        }
+
+        private void doanhThuBánHàngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StoreReport store_report = new StoreReport(nhanvien);
+            store_report.MdiParent = this;
+            store_report.Dock = DockStyle.Fill;
+            store_report.Top = 5;
+            store_report.Left = 5;
+            store_report.Size = this.ClientRectangle.Size;
+            store_report.Show();
+        }
+
+        private void thôngTinCáNhânToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EmployeeRegisterForm employeeRegisterForm = new EmployeeRegisterForm(this.nhanvien);
+            employeeRegisterForm.ShowDialog();
         }
     }
 }

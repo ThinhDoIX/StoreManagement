@@ -46,7 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\ChiTietHoaDon.cs" />
     <Compile Include="DTO\ChiTietPhieuNhapKho.cs" />
+    <Compile Include="DTO\HoaDon.cs" />
     <Compile Include="DTO\PhieuNhapKho.cs" />
     <Compile Include="GUI\CustomDesign\CircularButton.cs">
       <SubType>Component</SubType>
@@ -100,11 +102,23 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DTO\NhanVien.cs" />
+    <Compile Include="GUI\NewGoodReceiptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\NewGoodReceiptForm.Designer.cs">
+      <DependentUpon>NewGoodReceiptForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\OrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\OrderForm.Designer.cs">
       <DependentUpon>OrderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\StoreReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\StoreReport.Designer.cs">
+      <DependentUpon>StoreReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -144,6 +158,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StoreDBDataSet5.xsd</DependentUpon>
     </Compile>
+    <Compile Include="StoreDBDataSet6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StoreDBDataSet6.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="StoreDBDataSet7.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StoreDBDataSet7.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="StoreDBDataSet8.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StoreDBDataSet8.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GUI\EmployeeForm.resx">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,8 +194,14 @@
     <EmbeddedResource Include="GUI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\NewGoodReceiptForm.resx">
+      <DependentUpon>NewGoodReceiptForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\OrderForm.resx">
       <DependentUpon>OrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\StoreReport.resx">
+      <DependentUpon>StoreReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -256,6 +291,39 @@
     <None Include="StoreDBDataSet5.xss">
       <DependentUpon>StoreDBDataSet5.xsd</DependentUpon>
     </None>
+    <None Include="StoreDBDataSet6.xsc">
+      <DependentUpon>StoreDBDataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="StoreDBDataSet6.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StoreDBDataSet6.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="StoreDBDataSet6.xss">
+      <DependentUpon>StoreDBDataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="StoreDBDataSet7.xsc">
+      <DependentUpon>StoreDBDataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="StoreDBDataSet7.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StoreDBDataSet7.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="StoreDBDataSet7.xss">
+      <DependentUpon>StoreDBDataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="StoreDBDataSet8.xsc">
+      <DependentUpon>StoreDBDataSet8.xsd</DependentUpon>
+    </None>
+    <None Include="StoreDBDataSet8.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StoreDBDataSet8.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="StoreDBDataSet8.xss">
+      <DependentUpon>StoreDBDataSet8.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -289,6 +357,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\No_picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-icon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-icon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

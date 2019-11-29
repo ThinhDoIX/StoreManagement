@@ -1,6 +1,6 @@
 ﻿namespace StoreManager.GUI
 {
-    partial class GoodsReceiptForm
+    partial class NewGoodReceiptForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_xoa = new System.Windows.Forms.Button();
             this.btn_luu = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lbl_thanhtien = new System.Windows.Forms.TextBox();
@@ -43,12 +44,8 @@
             this.thanhtien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.numeric_soluong = new System.Windows.Forms.NumericUpDown();
-            this.cb_tenHH = new System.Windows.Forms.ComboBox();
-            this.hangHoaBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.storeDBDataSet5 = new StoreManager.StoreDBDataSet5();
             this.txt_thanhtien = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.txt_donvitinh = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txt_maHH = new System.Windows.Forms.TextBox();
@@ -61,8 +58,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.dtp_ngaylap = new System.Windows.Forms.DateTimePicker();
             this.cb_tenNCC = new System.Windows.Forms.ComboBox();
-            this.nhaCungCapBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.storeDBDataSet4 = new StoreManager.StoreDBDataSet4();
             this.label6 = new System.Windows.Forms.Label();
             this.txt_tenNV = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -72,19 +67,19 @@
             this.txt_sophieu = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.nhaCungCapTableAdapter = new StoreManager.StoreDBDataSet4TableAdapters.NhaCungCapTableAdapter();
-            this.hangHoaTableAdapter = new StoreManager.StoreDBDataSet5TableAdapters.HangHoaTableAdapter();
-            this.btn_xoa = new System.Windows.Forms.Button();
+            this.txt_tenHH = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.storeDBDataSet6 = new StoreManager.StoreDBDataSet6();
+            this.donViTinhBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.donViTinhTableAdapter = new StoreManager.StoreDBDataSet6TableAdapters.DonViTinhTableAdapter();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_chitietPNK)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_soluong)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hangHoaBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.storeDBDataSet5)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nhaCungCapBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.storeDBDataSet4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.storeDBDataSet6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.donViTinhBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -100,7 +95,17 @@
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1058, 579);
-            this.panel1.TabIndex = 0;
+            this.panel1.TabIndex = 1;
+            // 
+            // btn_xoa
+            // 
+            this.btn_xoa.BackColor = System.Drawing.Color.Red;
+            this.btn_xoa.Location = new System.Drawing.Point(9, 528);
+            this.btn_xoa.Name = "btn_xoa";
+            this.btn_xoa.Size = new System.Drawing.Size(88, 48);
+            this.btn_xoa.TabIndex = 6;
+            this.btn_xoa.Text = "Xóa";
+            this.btn_xoa.UseVisualStyleBackColor = false;
             // 
             // btn_luu
             // 
@@ -111,7 +116,6 @@
             this.btn_luu.TabIndex = 5;
             this.btn_luu.Text = "Lưu phiếu";
             this.btn_luu.UseVisualStyleBackColor = false;
-            this.btn_luu.Click += new System.EventHandler(this.btn_luu_Click);
             // 
             // panel2
             // 
@@ -167,8 +171,6 @@
             this.dgv_chitietPNK.RowTemplate.Height = 24;
             this.dgv_chitietPNK.Size = new System.Drawing.Size(627, 353);
             this.dgv_chitietPNK.TabIndex = 3;
-            this.dgv_chitietPNK.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_chitietPNK_CellClick);
-            this.dgv_chitietPNK.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_chitiethd_CellContentClick);
             // 
             // maHH
             // 
@@ -200,11 +202,11 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.txt_tenHH);
             this.groupBox2.Controls.Add(this.numeric_soluong);
-            this.groupBox2.Controls.Add(this.cb_tenHH);
             this.groupBox2.Controls.Add(this.txt_thanhtien);
             this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.txt_donvitinh);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.txt_maHH);
@@ -225,29 +227,6 @@
             this.numeric_soluong.Name = "numeric_soluong";
             this.numeric_soluong.Size = new System.Drawing.Size(254, 22);
             this.numeric_soluong.TabIndex = 23;
-            this.numeric_soluong.ValueChanged += new System.EventHandler(this.numeric_soluong_ValueChanged);
-            // 
-            // cb_tenHH
-            // 
-            this.cb_tenHH.DataSource = this.hangHoaBindingSource;
-            this.cb_tenHH.DisplayMember = "tenHH";
-            this.cb_tenHH.FormattingEnabled = true;
-            this.cb_tenHH.Location = new System.Drawing.Point(155, 41);
-            this.cb_tenHH.Name = "cb_tenHH";
-            this.cb_tenHH.Size = new System.Drawing.Size(254, 24);
-            this.cb_tenHH.TabIndex = 22;
-            this.cb_tenHH.ValueMember = "tenHH";
-            this.cb_tenHH.SelectedIndexChanged += new System.EventHandler(this.cb_tenHH_SelectedIndexChanged);
-            // 
-            // hangHoaBindingSource
-            // 
-            this.hangHoaBindingSource.DataMember = "HangHoa";
-            this.hangHoaBindingSource.DataSource = this.storeDBDataSet5;
-            // 
-            // storeDBDataSet5
-            // 
-            this.storeDBDataSet5.DataSetName = "StoreDBDataSet5";
-            this.storeDBDataSet5.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // txt_thanhtien
             // 
@@ -266,14 +245,6 @@
             this.label12.Size = new System.Drawing.Size(87, 20);
             this.label12.TabIndex = 20;
             this.label12.Text = "Thành tiền";
-            // 
-            // txt_donvitinh
-            // 
-            this.txt_donvitinh.Enabled = false;
-            this.txt_donvitinh.Location = new System.Drawing.Point(155, 263);
-            this.txt_donvitinh.Name = "txt_donvitinh";
-            this.txt_donvitinh.Size = new System.Drawing.Size(254, 22);
-            this.txt_donvitinh.TabIndex = 19;
             // 
             // label11
             // 
@@ -312,7 +283,6 @@
             this.label9.Size = new System.Drawing.Size(105, 20);
             this.label9.TabIndex = 14;
             this.label9.Text = "Mã hàng hóa";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // txt_dongia
             // 
@@ -322,7 +292,6 @@
             this.txt_dongia.Size = new System.Drawing.Size(254, 22);
             this.txt_dongia.TabIndex = 13;
             this.txt_dongia.Text = "0";
-            this.txt_dongia.TextChanged += new System.EventHandler(this.txt_dongia_TextChanged);
             // 
             // label8
             // 
@@ -333,7 +302,6 @@
             this.label8.Size = new System.Drawing.Size(66, 20);
             this.label8.TabIndex = 12;
             this.label8.Text = "Đơn giá";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label7
             // 
@@ -395,7 +363,6 @@
             // 
             // cb_tenNCC
             // 
-            this.cb_tenNCC.DataSource = this.nhaCungCapBindingSource;
             this.cb_tenNCC.DisplayMember = "tenNCC";
             this.cb_tenNCC.FormattingEnabled = true;
             this.cb_tenNCC.Location = new System.Drawing.Point(837, 57);
@@ -403,17 +370,6 @@
             this.cb_tenNCC.Size = new System.Drawing.Size(196, 24);
             this.cb_tenNCC.TabIndex = 9;
             this.cb_tenNCC.ValueMember = "tenNCC";
-            this.cb_tenNCC.SelectedIndexChanged += new System.EventHandler(this.cb_ncc_SelectedIndexChanged);
-            // 
-            // nhaCungCapBindingSource
-            // 
-            this.nhaCungCapBindingSource.DataMember = "NhaCungCap";
-            this.nhaCungCapBindingSource.DataSource = this.storeDBDataSet4;
-            // 
-            // storeDBDataSet4
-            // 
-            this.storeDBDataSet4.DataSetName = "StoreDBDataSet4";
-            this.storeDBDataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label6
             // 
@@ -499,38 +455,49 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Phiếu nhập kho";
             // 
-            // nhaCungCapTableAdapter
+            // txt_tenHH
             // 
-            this.nhaCungCapTableAdapter.ClearBeforeFill = true;
+            this.txt_tenHH.Location = new System.Drawing.Point(155, 41);
+            this.txt_tenHH.Name = "txt_tenHH";
+            this.txt_tenHH.Size = new System.Drawing.Size(254, 22);
+            this.txt_tenHH.TabIndex = 24;
             // 
-            // hangHoaTableAdapter
+            // comboBox1
             // 
-            this.hangHoaTableAdapter.ClearBeforeFill = true;
+            this.comboBox1.DataSource = this.donViTinhBindingSource;
+            this.comboBox1.DisplayMember = "tenDV";
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(155, 261);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(254, 24);
+            this.comboBox1.TabIndex = 25;
+            this.comboBox1.ValueMember = "tenDV";
             // 
-            // btn_xoa
+            // storeDBDataSet6
             // 
-            this.btn_xoa.BackColor = System.Drawing.Color.Red;
-            this.btn_xoa.Location = new System.Drawing.Point(9, 528);
-            this.btn_xoa.Name = "btn_xoa";
-            this.btn_xoa.Size = new System.Drawing.Size(88, 48);
-            this.btn_xoa.TabIndex = 6;
-            this.btn_xoa.Text = "Xóa";
-            this.btn_xoa.UseVisualStyleBackColor = false;
-            this.btn_xoa.Click += new System.EventHandler(this.btn_xoa_Click);
+            this.storeDBDataSet6.DataSetName = "StoreDBDataSet6";
+            this.storeDBDataSet6.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // GoodsReceiptForm
+            // donViTinhBindingSource
+            // 
+            this.donViTinhBindingSource.DataMember = "DonViTinh";
+            this.donViTinhBindingSource.DataSource = this.storeDBDataSet6;
+            // 
+            // donViTinhTableAdapter
+            // 
+            this.donViTinhTableAdapter.ClearBeforeFill = true;
+            // 
+            // NewGoodReceiptForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1082, 603);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "GoodsReceiptForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Phiếu cập nhật hàng";
-            this.Load += new System.EventHandler(this.GoodsReceiptForm_Load);
+            this.Name = "NewGoodReceiptForm";
+            this.Text = "Phiếu nhập hàng mới";
+            this.Load += new System.EventHandler(this.NewGoodReceiptForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -539,12 +506,10 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_soluong)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hangHoaBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.storeDBDataSet5)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nhaCungCapBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.storeDBDataSet4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.storeDBDataSet6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.donViTinhBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -552,11 +517,35 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView dgv_chitietPNK;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btn_xoa;
+        private System.Windows.Forms.Button btn_luu;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TextBox lbl_thanhtien;
+        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button btn_them;
+        private System.Windows.Forms.DataGridView dgv_chitietPNK;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maHH;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tenHH;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dongia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn soluong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn thanhtien;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox txt_tenHH;
+        private System.Windows.Forms.NumericUpDown numeric_soluong;
+        private System.Windows.Forms.TextBox txt_thanhtien;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txt_maHH;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txt_dongia;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox txt_maNCC;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.DateTimePicker dtp_ngaylap;
         private System.Windows.Forms.ComboBox cb_tenNCC;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txt_tenNV;
@@ -566,36 +555,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txt_sophieu;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txt_thanhtien;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txt_donvitinh;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txt_maHH;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txt_dongia;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private StoreDBDataSet4 storeDBDataSet4;
-        private System.Windows.Forms.BindingSource nhaCungCapBindingSource;
-        private StoreDBDataSet4TableAdapters.NhaCungCapTableAdapter nhaCungCapTableAdapter;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox cb_tenHH;
-        private StoreDBDataSet5 storeDBDataSet5;
-        private System.Windows.Forms.BindingSource hangHoaBindingSource;
-        private StoreDBDataSet5TableAdapters.HangHoaTableAdapter hangHoaTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn maHH;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tenHH;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dongia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn soluong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn thanhtien;
-        private System.Windows.Forms.Button btn_luu;
-        private System.Windows.Forms.DateTimePicker dtp_ngaylap;
-        private System.Windows.Forms.NumericUpDown numeric_soluong;
-        private System.Windows.Forms.TextBox txt_maNCC;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox lbl_thanhtien;
-        private System.Windows.Forms.Button btn_xoa;
+        private System.Windows.Forms.Label label1;
+        private StoreDBDataSet6 storeDBDataSet6;
+        private System.Windows.Forms.BindingSource donViTinhBindingSource;
+        private StoreDBDataSet6TableAdapters.DonViTinhTableAdapter donViTinhTableAdapter;
     }
 }
